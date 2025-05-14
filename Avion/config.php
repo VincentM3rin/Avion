@@ -3,7 +3,7 @@ $conn = mysqli_connect(
     "localhost",
     "root",
     "",
-    "aeroport"
+    "identifiant"
 );
 if (!$conn) {
     die("Connexion échouée : " . mysqli_connect_error());

@@ -15,7 +15,7 @@
 		</nav>
 		<h1>Bienvenue ADMIN !</h1>
 		<h2>Choisisez un avion : </h2>
-		<a href="./Avion1.html">Avion 1</a>
+		<a href="./Avion1.php">AirFrance</a>
 		<a href="./Avion2.html">Avion 2</a>
 		<a href="./Avion3.html">Avion 3</a>
 		<a href="./Avion4.html">Avion 4</a>

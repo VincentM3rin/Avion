@@ -1,3 +1,6 @@
+<?php
+    session_start()
+?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -7,43 +10,27 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 	</head>
 	<body>
-	<section>
-			<h1>Veuillez vous connecter au site internet</h1>
-        <form action="index.php" method="post">
-            <ul>
-                <li>
-                  <label for="NomUtilisateur">Nom d'utilisateur : </label>
-                  <input type="text" name="NomUtilisateur" id="NomUtilisateur" required><br><br>
-                </li>
-                <li>
-                  <label for="Mdp">Mot de passe :</label>
-                  <input type="text" name="Mdp" id="Mdp" required><br><br>
-                  <br>
-                </li>
-              </ul>
-            <button type="submit" id="connexion">Connexion</button>
-        </form>
+        <section id="pageindex">
+	<h1>Veuillez vous connecter au site internet</h1>
+            <div id="containerLogin">
+                <form action="PagesAnnexes/pageindex.php" method="get">
+                    <input class="inputLogin" type="text" name="NomUtilisateur" placeholder="NomUtilisateur">
+                    <input class="inputLogin" type="password" name="Mdp" placeholder="Mdp">
+                    <input class="boutonValider" name="boutonValider" type="submit" value="Valider">
+                </form>
+            </div>
 	</section>
+        <?php
+            if(isset($_GET) && isset($_GET["logfailed"])){
+            echo("
+                <section id='pageindex'>
+                    <div class='erreurLogin'>
+                        <p>Connexion impossible</p>
+                        <p>Veuillez réessayer</p>
+                    </div>
+                </section>
+            ");
+            }
+        ?>
 	</body>
 </html>
-<?php
-
-include_once("config.php");
-
-session_start();
-if(isset(INPUT_POST['connexion'])){
-
-    if (isset(INPUT_POST['NomUtilisateur']) && isset(INPUT_POST['Mdp'])) {
-       $NomUtilisateur = INPUT_POST['NomUtilisateur'];
-       $Mdp= INPUT_POST['Mdp'];
-       
-       $Requete = mysqli_query($mysqli,"SELECT * FROM identifiant WHERE NomUtilisateur = '".$NomUtilisateur."' AND Mdp = '".$Mdp."'");
-
-        if(mysqli_num_rows($Requete) == 0) {
-                            echo("login/mdp failed");
-        }
-            else{
-                $header = header ("Location : Acceuil.php");
-            }
-       }
-    }
